@@ -1,3 +1,4 @@
+using Plugins.DOTweenFramework;
 using Plugins.MVP;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,12 +8,17 @@ namespace _Game.Source.Presenter.RuneList.View
     public class RuneView : MonoBehaviour, IViewEnableable<RuneViewData>
     {
         [SerializeField] private Image _image;
+        [SerializeField] private TweenAnimation _appearAnimation;
         public void SetData(RuneViewData data)
         {
             _image.sprite = data.RuneSprite;
         }
 
-        public void Show() => gameObject.SetActive(true);
+        public void Show()
+        {
+            gameObject.SetActive(true);
+            _appearAnimation.Play();
+        }
 
         public void Hide() => gameObject.SetActive(false);
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Game.Source.Domain.Utilities;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace _Game.Source.Domain
         private readonly int _figureDotCount;
         private readonly float _minErrorValueToDetectFigure;
         private readonly IRepository<Figure> _figureRepository;
+        private FindFigureResult _findFigureResult;
+        public event Action<FindFigureResult> OnFindFigureResultChanged;
 
         public Recognizer(float minErrorValueToDetectFigure, int figureDotCount, IRepository<Figure> figureRepository)
         {
@@ -19,8 +22,11 @@ namespace _Game.Source.Domain
             _figureDotCount = figureDotCount;
         }
 
-        public FindFigureResult FindFigureByPoints(List<Vector2> points)
+        public FindFigureResult FindFigureByPoints(List<Vector2> rawPoints)
         {
+            var points = PointUtility.ResamplingPoints(rawPoints, _figureDotCount);
+            PointUtility.SquareScaling1X1(points);
+            PointUtility.TranslateToCenter(points);
             float minError = float.MaxValue;
             Figure closestFigure = null;
             foreach (var figure in _figureRepository)
@@ -34,12 +40,18 @@ namespace _Game.Source.Domain
                 }
             }
 
-            if (closestFigure != null && minError <= _minErrorValueToDetectFigure)
-                return new FindFigureResult(closestFigure.ID, true, minError);
-            
-            return new FindFigureResult("", false, minError);
+            bool figureHasFound = FigureHasFound(closestFigure, minError);
+            string id = figureHasFound && closestFigure !=null ? closestFigure.ID : "";
+            _findFigureResult = new FindFigureResult(id, figureHasFound, minError);
+            OnFindFigureResultChanged?.Invoke(_findFigureResult);
+            return _findFigureResult;
         }
-        
+
+        private bool FigureHasFound(Figure closestFigure, float minError)
+        {
+            return closestFigure != null && minError <= _minErrorValueToDetectFigure;
+        }
+
         private float CompareCurves(List<Vector2> a, List<Vector2> b)
         {
             if (a.Count != b.Count) return 1;

@@ -27,11 +27,11 @@ namespace _Game.Source
         [SerializeField] private Camera _camera;
         [Space]
         [SerializeField] private RuneListView _availableRuneListView;
-        [SerializeField] private RuneListView _detectedRuneListView;
+        [SerializeField] private RuneListView _drawnRuneListView;
         
         
-        private List<IDisposable> _disposables = new();
-        private List<IInitializable> _initializables = new();
+        private readonly List<IDisposable> _disposables = new();
+        private readonly List<IInitializable> _initializables = new();
         private void Awake()
         {
             RegisterCore();
@@ -73,9 +73,13 @@ namespace _Game.Source
             var availableRuneListPresenter =
                 new AvailableRuneListPresenter(ServiceLocator.Container.Resolve<IRepository<Figure>>(),
                     _availableRuneListView);
-            
+
+            var drawnRuneListPresenter =
+                new DrawnRuneListPresenter(ServiceLocator.Container.Resolve<Recognizer>(), _drawnRuneListView);
             
             _initializables.Add(availableRuneListPresenter);
+            _initializables.Add(drawnRuneListPresenter);
+            _disposables.Add(drawnRuneListPresenter);
         }
     }
     
