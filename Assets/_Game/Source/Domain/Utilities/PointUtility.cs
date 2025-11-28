@@ -57,14 +57,15 @@ namespace _Game.Source.Domain.Utilities
                 maxY = Mathf.Max(maxY, point.y);
             }
 
-            float width = Mathf.Max(maxX - minY, 0.000001f);
-            float height = Mathf.Max(maxY - minX, 0.000001f);
-
+            float width = Mathf.Max(maxX - minY, 1);
+            float height = Mathf.Max(maxY - minX, 1);
+            float scale = Mathf.Max(width, height);
+            
             for (var i = 0; i < originPoints.Count; i++)
             {
                 var p = originPoints[i];
-                float x = (p.x - minX) / width;
-                float y = (p.y - minY) / height;
+                float x = (p.x - minX) / scale;
+                float y = (p.y - minY) / scale;
 
                 originPoints[i] = new Vector2(x, y);
             }

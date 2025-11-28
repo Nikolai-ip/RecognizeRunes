@@ -21,14 +21,12 @@ namespace _Game.Source.Domain
 
         public FindFigureResult FindFigureByPoints(List<Vector2> points)
         {
-            points = PointUtility.ResamplingPoints(points, _figureDotCount);
-            PointUtility.SquareScaling1X1(points);
-            PointUtility.TranslateToCenter(points);
             float minError = float.MaxValue;
             Figure closestFigure = null;
             foreach (var figure in _figureRepository)
             {
                 float error = CompareCurves(points, figure.Points);
+                Debug.Log(figure.ID + ": " + error);
                 if (error < minError)
                 {
                     closestFigure = figure;

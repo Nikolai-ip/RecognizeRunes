@@ -8,11 +8,14 @@ namespace _Game.Source.Domain
         private readonly float _step;
         private Vector2 _previousPoint = new(float.MaxValue, float.MaxValue);
         private List<Vector2> _points = new();
+        
 
         public Line(float step)
         {
             _step = step;
         }
+
+        public List<Vector2> Points => _points;
 
         public bool TryAddPoint(Vector2 mousePos)
         {

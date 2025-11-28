@@ -12,5 +12,10 @@ namespace _Game.Source.Domain
             HasFound = hasFound;
             ErrorValue = errorValue;
         }
+
+        public override string ToString()
+        {
+            return $"{FigureID}: Has found {HasFound} Error: {ErrorValue}";
+        }
     }
 }

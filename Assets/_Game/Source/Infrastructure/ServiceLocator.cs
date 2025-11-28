@@ -7,13 +7,15 @@ namespace _Game.Source.Infrastructure
         private static ServiceLocator _instance;
         public static ServiceLocator Container => _instance ??= new ServiceLocator();
 
-        public void RegisterSingle<TContract>(TContract implementation)
+        public TContract RegisterSingle<TContract>(TContract implementation)
         {
             Implementation<TContract>.Instance = implementation;
+            return implementation;
         }
-        public void RegisterSingle<TContract>(Func<ServiceLocator, TContract> factory)
+        public TContract RegisterSingle<TContract>(Func<ServiceLocator, TContract> factory)
         {
             Implementation<TContract>.Instance = factory.Invoke(_instance);
+            return Implementation<TContract>.Instance;
         }
         public TContract Resolve<TContract>()
         {
