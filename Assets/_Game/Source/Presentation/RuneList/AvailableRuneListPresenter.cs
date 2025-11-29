@@ -1,10 +1,11 @@
 using System.Linq;
+using _Game.Source.Abstract.DomainGameplay;
 using _Game.Source.Domain;
 using _Game.Source.Infrastructure;
-using _Game.Source.Presenter.RuneList.View;
+using _Game.Source.Presentation.RuneList.View;
 using Plugins.MVP;
 
-namespace _Game.Source.Application.RuneList
+namespace _Game.Source.Presentation.RuneList
 {
     public class AvailableRuneListPresenter: IInitializable
     {

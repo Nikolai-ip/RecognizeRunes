@@ -1,7 +1,7 @@
-using _Game.Source.Domain;
+using _Game.Source.Abstract.DomainGameplay;
 using UnityEngine;
 
-namespace _Game.Source.Application
+namespace _Game.Source.UseCases
 {
     public class DrawPointClickValidator: IValidator<DrawValidationContext>
     {

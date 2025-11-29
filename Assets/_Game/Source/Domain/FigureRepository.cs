@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Source.Abstract.DomainGameplay;
 
 namespace _Game.Source.Domain
 {

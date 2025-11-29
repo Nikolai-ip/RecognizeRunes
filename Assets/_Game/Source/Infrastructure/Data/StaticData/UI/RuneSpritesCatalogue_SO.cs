@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Game.Source.Data.StaticData.UI
+namespace _Game.Source.Infrastructure.Data.StaticData.UI
 {
     [CreateAssetMenu(fileName = "RuneSpriteCatalogue_SO", menuName = "StaticData/UI/RuneSpriteCatalogue")]
     public class RuneSpritesCatalogue_SO: ScriptableObject

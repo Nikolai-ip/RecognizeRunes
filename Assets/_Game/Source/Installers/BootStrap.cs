@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
-using _Game.Source.Application;
-using _Game.Source.Application.RuneList;
-using _Game.Source.Data.StaticData;
+using _Game.Source.Abstract.DomainGameplay;
 using _Game.Source.Domain;
 using _Game.Source.Infrastructure;
-using _Game.Source.Presenter.RuneList.View;
+using _Game.Source.Infrastructure.Data.StaticData;
+using _Game.Source.Presentation;
+using _Game.Source.Presentation.RuneList;
+using _Game.Source.Presentation.RuneList.View;
+using _Game.Source.UseCases;
+using _Game.Source.UseCases.RecognizeModule;
 using Plugins.MVP;
-using Unity.Collections;
 using UnityEngine;
 
-namespace _Game.Source
+namespace _Game.Source.Installers
 {
     [DefaultExecutionOrder(0)]
     public class BootStrap: MonoBehaviour
@@ -51,11 +53,17 @@ namespace _Game.Source
 
         private void RegisterCore()
         {
+            ServiceLocator.Container.RegisterSingle<ICurveComparer>(new SquareCurveMatcher());
+            
             ServiceLocator.Container
                 .RegisterSingle<IRepository<Figure>>(_figureRepository_SO.GetRepository(_figureDotCount));
             
             ServiceLocator.Container.RegisterSingle(c =>
-                    new Recognizer(_minErrorValueToDetectFigure, _figureDotCount, c.Resolve<IRepository<Figure>>()));
+                    new Recognizer(
+                        _minErrorValueToDetectFigure, 
+                        _figureDotCount, 
+                        c.Resolve<IRepository<Figure>>(),
+                        c.Resolve<ICurveComparer>()));
         }
 
         private void RegisterApplication()

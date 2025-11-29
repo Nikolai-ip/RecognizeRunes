@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using _Game.Source.Data.StaticData.UI;
+using _Game.Source.Infrastructure.Data.StaticData.UI;
 using Plugins.MVP;
 using UnityEngine;
 
-namespace _Game.Source.Presenter.RuneList.View
+namespace _Game.Source.Presentation.RuneList.View
 {
     public class RuneListView: MonoBehaviour, IView<RuneListViewData>
     {

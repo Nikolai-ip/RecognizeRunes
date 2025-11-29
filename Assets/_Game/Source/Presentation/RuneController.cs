@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
+using _Game.Source.Abstract.DomainGameplay;
 using _Game.Source.Domain;
 using _Game.Source.Infrastructure;
+using _Game.Source.UseCases;
+using _Game.Source.UseCases.RecognizeModule;
 using Plugins.MVP;
 using UnityEngine;
 
-namespace _Game.Source.Application
+namespace _Game.Source.Presentation
 {
     public class RuneController: MonoBehaviour
     {

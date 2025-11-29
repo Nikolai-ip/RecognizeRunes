@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using _Game.Source.Domain;
 using _Game.Source.Infrastructure;
-using _Game.Source.Presenter.RuneList.View;
+using _Game.Source.Presentation.RuneList.View;
+using _Game.Source.UseCases.RecognizeModule;
 using Plugins.MVP;
 
-namespace _Game.Source.Application.RuneList
+namespace _Game.Source.Presentation.RuneList
 {
     public class DrawnRuneListPresenter: IInitializable, IDisposable
     {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Game.Source.Data.StaticData;
+using _Game.Source.Abstract.DomainGameplay;
 using _Game.Source.Domain;
-using _Game.Source.Domain.Utilities;
 using _Game.Source.Infrastructure;
+using _Game.Source.UseCases.RecognizeModule;
 using NUnit.Framework;
 using UnityEngine;
 

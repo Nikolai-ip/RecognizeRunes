@@ -3,7 +3,7 @@ using System.Linq;
 using _Game.Source.Domain;
 using UnityEngine;
 
-namespace _Game.Source.Data.StaticData
+namespace _Game.Source.Infrastructure.Data.StaticData
 {
     [CreateAssetMenu(fileName = "FigureRepository", menuName = "StaticData/FigureRepository")]
     public class FigureRepository_SO: ScriptableObject

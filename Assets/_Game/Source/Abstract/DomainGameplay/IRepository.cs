@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace _Game.Source
+namespace _Game.Source.Abstract.DomainGameplay
 {
     public interface IRepository<T>: IEnumerable<T>
     {

@@ -3,7 +3,7 @@ using Plugins.MVP;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Game.Source.Presenter.RuneList.View
+namespace _Game.Source.Presentation.RuneList.View
 {
     public class RuneView : MonoBehaviour, IViewEnableable<RuneViewData>
     {

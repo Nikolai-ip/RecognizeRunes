@@ -1,8 +1,7 @@
-using System;
 using Plugins.MVP;
 using UnityEngine;
 
-namespace _Game.Source.Application
+namespace _Game.Source.Presentation
 {
     [RequireComponent(typeof(LineRenderer))]
     public class LineView: MonoBehaviour, IView<LineViewData>

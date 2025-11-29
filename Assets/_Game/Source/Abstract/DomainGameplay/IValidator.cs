@@ -1,4 +1,4 @@
-namespace _Game.Source.Domain
+namespace _Game.Source.Abstract.DomainGameplay
 {
     public interface IValidator<TContext>
     {

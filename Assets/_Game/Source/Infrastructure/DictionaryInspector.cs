@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace _Game.Source
+namespace _Game.Source.Infrastructure
 {
     [Serializable]
     public class DictionaryInspector<TKey, TValue>

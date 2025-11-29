@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Game.Source.Domain.Utilities
+namespace _Game.Source.UseCases.Utilities
 {
     public static class PointUtility
     {

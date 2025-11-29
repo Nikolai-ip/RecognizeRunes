@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using _Game.Source.Domain;
-using _Game.Source.Domain.Utilities;
+using _Game.Source.UseCases.Utilities;
 using UnityEngine;
 
-namespace _Game.Source.Data.StaticData
+namespace _Game.Source.Infrastructure.Data.StaticData
 {
     [CreateAssetMenu(fileName = "Figure", menuName = "StaticData/Figure")]
     public class Figure_SO: ScriptableObject
