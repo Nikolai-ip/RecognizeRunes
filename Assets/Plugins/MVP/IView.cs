@@ -21,4 +21,9 @@ namespace Plugins.MVP
     {
         event Action<TViewCallback> Callback;
     }
+
+    public interface IViewInteractable
+    {
+        event Action Callback;
+    }
 }

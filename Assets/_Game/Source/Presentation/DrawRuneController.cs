@@ -1,3 +1,4 @@
+using System.Linq;
 using _Game.Source.Abstract.DomainGameplay;
 using _Game.Source.Domain;
 using _Game.Source.Infrastructure;
@@ -37,7 +38,7 @@ namespace _Game.Source.Presentation
                 }
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && _line.Points.Any())
             {
                 _lineView.SetData(new LineViewData().OnLineCleared());
                 _recognizer.FindFigureByPoints(_line.Points);

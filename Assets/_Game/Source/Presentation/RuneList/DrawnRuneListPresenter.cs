@@ -13,18 +13,21 @@ namespace _Game.Source.Presentation.RuneList
         private readonly Recognizer _recognizer;
         private readonly List<string> _drawnRuneList = new();
         private readonly IView<RuneListViewData> _runeListView;
+        private readonly IViewInteractable _resetButton;
 
-        public DrawnRuneListPresenter(Recognizer recognizer, IView<RuneListViewData> runeListView)
+        public DrawnRuneListPresenter(Recognizer recognizer, IView<RuneListViewData> runeListView, IViewInteractable resetButton)
         {
             _recognizer = recognizer;
             _runeListView = runeListView;
+            _resetButton = resetButton;
         }
 
         public void Initialize()
         {
             _recognizer.OnFindFigureResultChanged += UpdateView;
+            _resetButton.Callback += ResetList;
         }
-
+        
         private void UpdateView(FindFigureResult findFigureResult)
         {
             if (!findFigureResult.HasFound) return;
@@ -34,10 +37,17 @@ namespace _Game.Source.Presentation.RuneList
                 _runeListView.SetData(new RuneListViewData(_drawnRuneList));
             }
         }
+        
+        private void ResetList()
+        {
+            _drawnRuneList.Clear();
+            _runeListView.SetData(new RuneListViewData(_drawnRuneList));
+        }
 
         public void Dispose()
         {
             _recognizer.OnFindFigureResultChanged -= UpdateView;
+            _resetButton.Callback -= ResetList;
         }
     }
 }

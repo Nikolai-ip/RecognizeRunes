@@ -5,6 +5,7 @@ using _Game.Source.Domain;
 using _Game.Source.Infrastructure;
 using _Game.Source.Infrastructure.Data.StaticData;
 using _Game.Source.Presentation;
+using _Game.Source.Presentation.CommonViews;
 using _Game.Source.Presentation.RuneList;
 using _Game.Source.Presentation.RuneList.View;
 using _Game.Source.UseCases;
@@ -30,6 +31,7 @@ namespace _Game.Source.Installers
         [Space]
         [SerializeField] private RuneListView _availableRuneListView;
         [SerializeField] private RuneListView _drawnRuneListView;
+        [SerializeField] private ButtonView _resetButton;
         
         
         private readonly List<IDisposable> _disposables = new();
@@ -83,7 +85,7 @@ namespace _Game.Source.Installers
                     _availableRuneListView);
 
             var drawnRuneListPresenter =
-                new DrawnRuneListPresenter(ServiceLocator.Container.Resolve<Recognizer>(), _drawnRuneListView);
+                new DrawnRuneListPresenter(ServiceLocator.Container.Resolve<Recognizer>(), _drawnRuneListView, _resetButton);
             
             _initializables.Add(availableRuneListPresenter);
             _initializables.Add(drawnRuneListPresenter);
