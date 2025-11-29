@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &36000335833382226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4744455266183083679}
+  - component: {fileID: 4315274136969457281}
+  m_Layer: 5
+  m_Name: '[DisappearAnimation]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4744455266183083679
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36000335833382226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4756389840080331576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4315274136969457281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36000335833382226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e6f6119f6b4474a07c26e7e620d79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tr: {fileID: 1517824558449172189}
+  _animationParams:
+    <Delay>k__BackingField: 0
+    <Duration>k__BackingField: 0.3
+    <OriginScale>k__BackingField: {x: 1, y: 1, z: 1}
+    <Scale>k__BackingField: {x: 0, y: 0, z: 0}
+    <EaseFunc>k__BackingField:
+      <Func>k__BackingField: 10
+      <Amplitude>k__BackingField: 1
+      <Period>k__BackingField: 1
 --- !u!1 &2541575007020648991
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +263,7 @@ RectTransform:
   m_Children:
   - {fileID: 1517824558449172189}
   - {fileID: 5936126204307260604}
+  - {fileID: 4744455266183083679}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -226,3 +285,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 7786572284465435030}
   _appearAnimation: {fileID: 3524721229063151047}
+  _disappearAnimation: {fileID: 4315274136969457281}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using _Game.Source.Infrastructure.Data.StaticData.UI;
 using Plugins.MVP;
 using UnityEngine;
@@ -18,25 +19,37 @@ namespace _Game.Source.Presentation.RuneList.View
             DisableAllRuneViews();
         }
 
-        private void DisableAllRuneViews() => _runeViews.ForEach(rune => rune.Hide());
+        private void DisableAllRuneViews() => _runeViews.ForEach(rune => rune.DisableObject());
 
         public void SetData(RuneListViewData data)
         {
-            DisableAllRuneViews();
             if (data.RuneIds.Count > _runeViews.Count)
                 throw new InvalidOperationException(
                     $"Too many runes: {data.RuneIds.Count}, but view supports only {_runeViews.Count}");
-                
-            
-            for (int i = 0; i < data.RuneIds.Count; i++)
+
+            int visibleElementCount = _runeViews.Count(e => e.IsVisible);
+            int diff = data.RuneIds.Count - visibleElementCount;
+            if (diff > 0)
             {
-                _runeViews[i].Show();
-                if (_runeSpritesCatalogue.TryGetValue(data.RuneIds[i], out Sprite runeSprite))
-                    _runeViews[i].SetData(new RuneViewData(runeSprite));
-                else
-                    throw new KeyNotFoundException($"Rune sprites with id: {data.RuneIds[i]} is not found");
-                
+                for (int i = visibleElementCount; i < visibleElementCount + diff; i++)
+                    ShowRuneView(data.RuneIds[i], i);
             }
+            else if (diff < 0)
+            {
+                for (int i = visibleElementCount + diff; i < _runeViews.Count ; i++)
+                {
+                    _runeViews[i].Hide();
+                }
+            }
+        }
+
+        private void ShowRuneView(string id, int i)
+        {
+            _runeViews[i].Show();
+            if (_runeSpritesCatalogue.TryGetValue(id, out Sprite runeSprite))
+                _runeViews[i].SetData(new RuneViewData(runeSprite));
+            else
+                throw new KeyNotFoundException($"Rune sprites with id: {id} is not found");
         }
     }
 
