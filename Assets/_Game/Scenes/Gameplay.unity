@@ -951,10 +951,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _figureRepository_SO: {fileID: 11400000, guid: 9cd6ce87ae3824ab382342a5b732b0c8, type: 2}
-  _minErrorValueToDetectFigure: 0.18
+  _minErrorValueToDetectFigure: 0.2
   _figureDotCount: 64
   _bendsCountWeight: 1
-  _angleThresholdRadToDetectdBend: 0.78
+  _angleThresholdRadToDetectdBend: 0.68
   _drawArea: {fileID: 421445901}
   _lineView: {fileID: 778353906}
   _lineDrawStep: 0.15
