@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 4
   _points:
-  - {x: -1, y: -1}
+  - {x: -1, y: -0.8}
   - {x: -1, y: 1}
-  - {x: 0, y: 0.5}
+  - {x: 0, y: 0.1}
   - {x: 1, y: 1}
-  - {x: 1, y: -1}
+  - {x: 1, y: -0.8}
   _needResampling: 1
   _needScaling: 1
   _needCentation: 1

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using _Game.Source.Domain;
 using _Game.Source.Infrastructure;
 using Plugins.MVP;
@@ -13,6 +15,9 @@ namespace _Game.Source.Application
         private Recognizer _recognizer;
         private IValidator<DrawValidationContext> _validator;
         
+        [SerializeField] private List<LineRenderer> _targetFigures;
+        private IRepository<Figure> _repository;
+        
         private void Awake()
         {
             _lineView = ServiceLocator.Container.Resolve<IView<LineViewData>>();        
@@ -20,8 +25,26 @@ namespace _Game.Source.Application
             _camera = ServiceLocator.Container.Resolve<Camera>();
             _recognizer = ServiceLocator.Container.Resolve<Recognizer>();
             _validator = ServiceLocator.Container.Resolve<IValidator<DrawValidationContext>>();         
-        }
+            _repository = ServiceLocator.Container.Resolve<IRepository<Figure>>();
 
+        }
+        private void Start()
+        {
+            for (int i = 0; i < _repository.Count(); i++)
+            {
+                DrawPoints(_repository.ElementAt(i).Points, _targetFigures[i]);
+            }
+        }
+        private void DrawPoints(List<Vector2> points, LineRenderer lineRenderer)
+        {
+            lineRenderer.positionCount = 0;
+            for (var i = 0; i < points.Count; i++)
+            {
+                var point = points[i];
+                lineRenderer.positionCount++;
+                lineRenderer.SetPosition(i, point);
+            }
+        }
         private void Update()
         {
             if (Input.GetMouseButton(0))

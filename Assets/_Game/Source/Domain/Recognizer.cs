@@ -60,10 +60,12 @@ namespace _Game.Source.Domain
             float totalDistanceDiff = 0;
             for (int i = 0; i < count; i++)
             {
-                totalDistanceDiff += Vector2.Distance(a[i], b[i]);
+                float d = Vector2.Distance(a[i], b[i]);
+                totalDistanceDiff += d*d;
             }
 
             error = totalDistanceDiff / count;
+            error = Mathf.Sqrt(error);
             error /= SQRT_2;
             
             return error;
