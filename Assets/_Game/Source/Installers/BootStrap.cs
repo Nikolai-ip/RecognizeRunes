@@ -22,7 +22,9 @@ namespace _Game.Source.Installers
         [SerializeField] private FigureRepository_SO _figureRepository_SO;
         [SerializeField] private float _minErrorValueToDetectFigure;
         [SerializeField] private int _figureDotCount = 64;
-
+        [SerializeField] private float _bendsCountWeight;
+        [SerializeField] private float _angleThresholdRadToDetectdBend;
+        
         [Header("UI")] 
         [SerializeField] private RectTransform _drawArea;
         [SerializeField] private LineView _lineView;
@@ -65,7 +67,9 @@ namespace _Game.Source.Installers
                         _minErrorValueToDetectFigure, 
                         _figureDotCount, 
                         c.Resolve<IRepository<Figure>>(),
-                        c.Resolve<ICurveComparer>()));
+                        c.Resolve<ICurveComparer>(),
+                        _bendsCountWeight,
+                        new BendsCounter(_angleThresholdRadToDetectdBend)));
         }
 
         private void RegisterApplication()

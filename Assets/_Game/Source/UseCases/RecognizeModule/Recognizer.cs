@@ -11,17 +11,21 @@ namespace _Game.Source.UseCases.RecognizeModule
     {
         private readonly int _figureDotCount;
         private readonly float _minErrorValueToDetectFigure;
+        private readonly float _bendCountWeight;
         private readonly IRepository<Figure> _figureRepository;
         private readonly ICurveComparer _curveComparer;
+        private readonly BendsCounter _bendsCounter;
         private FindFigureResult _findFigureResult;
         public event Action<FindFigureResult> OnFindFigureResultChanged;
 
-        public Recognizer(float minErrorValueToDetectFigure, int figureDotCount, IRepository<Figure> figureRepository, ICurveComparer curveComparer)
+        public Recognizer(float minErrorValueToDetectFigure, int figureDotCount, IRepository<Figure> figureRepository, ICurveComparer curveComparer, float bendCountWeight, BendsCounter bendsCounter)
         {
             _minErrorValueToDetectFigure = minErrorValueToDetectFigure;
             _figureRepository = figureRepository;
             _figureDotCount = figureDotCount;
             _curveComparer = curveComparer;
+            _bendCountWeight = bendCountWeight;
+            _bendsCounter = bendsCounter;
         }
 
         public FindFigureResult FindFigureByPoints(List<Vector2> rawPoints)
@@ -34,8 +38,11 @@ namespace _Game.Source.UseCases.RecognizeModule
             Figure closestFigure = null;
             foreach (var figure in _figureRepository)
             {
-                float error = _curveComparer.CompareCurves(points, figure.Points);
-                Debug.Log(figure.ID + " : " + error);
+                float compareCurvesValue = _curveComparer.CompareCurves(points, figure.Points);
+                int bandsCount = _bendsCounter.CountBends(points);
+                float bandsError = (float)Mathf.Abs(bandsCount - figure.BendsCount) / figure.BendsCount;
+                bandsError *= _bendCountWeight;
+                float error = compareCurvesValue + bandsError;
                 if (error < minError)
                 {
                     closestFigure = figure;

@@ -27,5 +27,6 @@ namespace _Game.Source.UseCases.RecognizeModule
             
             return error;
         }
+
     }
 }

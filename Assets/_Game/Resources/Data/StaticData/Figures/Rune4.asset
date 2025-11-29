@@ -19,6 +19,7 @@ MonoBehaviour:
   - {x: 0, y: 0.1}
   - {x: 1, y: 1}
   - {x: 1, y: -0.8}
+  _bendsCount: 3
   _needResampling: 1
   _needScaling: 1
   _needCentation: 1

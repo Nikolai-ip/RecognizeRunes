@@ -10,10 +10,11 @@ namespace _Game.Source.Infrastructure.Data.StaticData
     {
         [SerializeField] private string _id;
         [SerializeField] private List<Vector2> _points;
+        [SerializeField] private int _bendsCount;
         [SerializeField] private bool _needResampling = true;
         [SerializeField] private bool _needScaling = true;
         [SerializeField] private bool _needCentation = true;
-
+    
         public Figure GetFigure(int figureDotCount)
         {
             var copiedPoints = new List<Vector2>(_points);
@@ -23,7 +24,7 @@ namespace _Game.Source.Infrastructure.Data.StaticData
                 PointUtility.SquareScaling1X1(copiedPoints);
             if (_needCentation)
                 PointUtility.TranslateToCenter(copiedPoints);
-            return new Figure(copiedPoints, _id);
+            return new Figure(copiedPoints, _id, _bendsCount);
         }
         
     }
