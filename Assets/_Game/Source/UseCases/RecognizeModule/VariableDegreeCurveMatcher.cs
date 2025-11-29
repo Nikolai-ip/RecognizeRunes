@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace _Game.Source.UseCases.RecognizeModule
 {
-    public class SquareCurveMatcher: ICurveComparer
+    public class VariableDegreeCurveMatcher: ICurveComparer
     {
+        private readonly float _sqrtPow = 5f;
         private const float SQRT_2 = 1.4142f;
         
         public float CompareCurves(List<Vector2> a, List<Vector2> b)
@@ -17,11 +18,11 @@ namespace _Game.Source.UseCases.RecognizeModule
             for (int i = 0; i < count; i++)
             {
                 float d = Vector2.Distance(a[i], b[i]);
-                totalDistanceDiff += d*d;
+                totalDistanceDiff += d*d*d*d*d;
             }
 
             error = totalDistanceDiff / count;
-            error = Mathf.Sqrt(error);
+            error = Mathf.Pow(error, 1f / _sqrtPow);
             error /= SQRT_2;
             
             return error;

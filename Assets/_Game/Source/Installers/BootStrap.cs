@@ -55,7 +55,7 @@ namespace _Game.Source.Installers
 
         private void RegisterCore()
         {
-            ServiceLocator.Container.RegisterSingle<ICurveComparer>(new SquareCurveMatcher());
+            ServiceLocator.Container.RegisterSingle<ICurveComparer>(new VariableDegreeCurveMatcher());
             
             ServiceLocator.Container
                 .RegisterSingle<IRepository<Figure>>(_figureRepository_SO.GetRepository(_figureDotCount));

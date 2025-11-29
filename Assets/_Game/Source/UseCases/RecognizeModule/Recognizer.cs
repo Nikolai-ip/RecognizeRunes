@@ -35,6 +35,7 @@ namespace _Game.Source.UseCases.RecognizeModule
             foreach (var figure in _figureRepository)
             {
                 float error = _curveComparer.CompareCurves(points, figure.Points);
+                Debug.Log(figure.ID + " : " + error);
                 if (error < minError)
                 {
                     closestFigure = figure;
