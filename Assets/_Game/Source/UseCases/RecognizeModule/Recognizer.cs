@@ -40,9 +40,13 @@ namespace _Game.Source.UseCases.RecognizeModule
             {
                 float compareCurvesValue = _curveComparer.CompareCurves(points, figure.Points);
                 int bandsCount = _bendsCounter.CountBends(points);
-                float bandsError = (float)Mathf.Abs(bandsCount - figure.BendsCount) / figure.BendsCount;
+                int div = figure.BendsCount >= 1? figure.BendsCount : 1;
+                float bandsError = (float)Mathf.Abs(bandsCount - figure.BendsCount) / div;
                 bandsError *= _bendCountWeight;
                 float error = compareCurvesValue + bandsError;
+                Debug.Log("CompareCurves: " + compareCurvesValue);
+                Debug.Log("bandsError: " + bandsError);
+                Debug.Log("ID: " + figure.ID + " error: " + error);
                 if (error < minError)
                 {
                     closestFigure = figure;

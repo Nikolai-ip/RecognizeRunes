@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f998bc2653d64f4f88d6228a8d772c34, type: 3}
-  m_Name: Rune4
+  m_Name: Cirlcle
   m_EditorClassIdentifier: 
-  _id: 4
+  _id: 5
   _points:
-  - {x: -1, y: -0.8}
-  - {x: -1, y: 1}
-  - {x: 0, y: 0.25}
-  - {x: 1, y: 1}
-  - {x: 1, y: -0.8}
-  _bendsCount: 3
+  - {x: -1, y: 0}
+  - {x: -0.86, y: 0.5}
+  - {x: -0.5, y: 0.866}
+  - {x: 0, y: 1}
+  - {x: 0.5, y: 0.866}
+  - {x: 0.86, y: 0.5}
+  - {x: 1, y: 0}
+  - {x: 0.86, y: -0.5}
+  - {x: 0.5, y: -0.866}
+  - {x: 0, y: -1}
+  - {x: -0.5, y: -0.866}
+  - {x: -0.866, y: -0.5}
+  - {x: -1, y: 0}
+  _bendsCount: 0
   _needResampling: 1
   _needScaling: 1
   _needCentation: 1

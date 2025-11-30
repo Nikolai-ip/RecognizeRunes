@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Plugins.MVP;
 using UnityEngine;
 
@@ -23,7 +24,20 @@ namespace _Game.Source.Presentation
                 case LineViewData.Action.ClearLine:
                     ClearLine();
                     break;
+                case LineViewData.Action.RenderLine:
+                    RenderLine(data.Points);
+                    break;
             }    
+        }
+
+        private void RenderLine(List<Vector2> line)
+        {
+            ClearLine();
+            for (int i = 0; i < line.Count; i++)
+            {
+                _lineRenderer.positionCount++;
+                _lineRenderer.SetPosition(i,  line[i]);
+            }
         }
 
         private void ClearLine()
@@ -44,11 +58,13 @@ namespace _Game.Source.Presentation
         {
             None,
             AddPoint,
+            RenderLine,
             ClearLine
         }
 
         public Action ViewAction { get; private set; }
         public Vector2 NewPoint { get; private set; }
+        public List<Vector2> Points { get; set; }
 
         public LineViewData OnPointAdded(Vector2 point)
         {
@@ -62,5 +78,13 @@ namespace _Game.Source.Presentation
             ViewAction = Action.ClearLine;
             return this;
         }
+
+        public LineViewData OnRenderLine(List<Vector2> points)
+        {
+            Points = points;
+            ViewAction = Action.RenderLine;
+            return this;
+        }
+
     }
 }
